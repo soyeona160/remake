@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Login from './Routes/Login'
 import Main from './Routes/Main'
 import Write from './Routes/Write'
+import Read from './Routes/Read'
 import { Avatar, Card, Divider, Flex, Layout } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
@@ -47,6 +48,7 @@ function App() {
             <Route path='/' element={<Main/>}></Route>
               <Route path='/users/login' element={<Login/>}></Route>
               <Route path='/posts/write' element={<Write/>}></Route>
+              <Route path='/posts/read' element={<Read/>}></Route>
             </Routes>
           </BrowserRouter>
         </Content>

@@ -44,6 +44,20 @@ router.post('/write', isAuth, expressAsyncHandler( async(req,res,next)=>{
     } // 201: created(생성됨)
 }))
 
+
+router.get('/:id', expressAsyncHandler((async(req,res,next)=>{
+  const post = await Post.findOne({
+      _id: req.params.id
+  })
+
+  if(!post){
+      res.statue(404).json({code:404, message: '404 not found'})
+  }else{
+    const { title, author, description, createdAt, isPrivacy} = post
+    res.json({code: 201, title, author, description, createdAt, isPrivacy })
+  }
+})))
+
 router.put('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
     const post = await Post.findOne({
         author: req.user._id,
@@ -60,7 +74,17 @@ router.put('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
     }
 }))
 
-router.delete('/')
+router.delete('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
+  const post = await Post.findByIdAndDelete({
+      _id: req.params.id
+  })
+
+  if(!post){
+      res.statue(404).json({code:404, message: '404 not found'})
+  }else{
+
+  }
+}))
 
 
 module.exports = router

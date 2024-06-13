@@ -30,10 +30,6 @@ const postSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    },
-    memberMax: {
-        type: Number,
-        default: 6
     }
 })
 
