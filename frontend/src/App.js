@@ -4,6 +4,7 @@ import Login from './Routes/Login'
 import Main from './Routes/Main'
 import Write from './Routes/Write'
 import Read from './Routes/Read'
+import Signup from './Routes/Signup'
 import { Avatar, Card, Divider, Flex, Layout } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
@@ -38,6 +39,7 @@ const headerStyle = {
 
 
 function App() {
+  
   return (
     <Flex>
     <Layout style={layoutStyle}>
@@ -47,6 +49,7 @@ function App() {
             <Routes>
             <Route path='/' element={<Main/>}></Route>
               <Route path='/users/login' element={<Login/>}></Route>
+              <Route path='/users/signup' element={<Signup/>}></Route>
               <Route path='/posts/write' element={<Write/>}></Route>
               <Route path='/posts/read' element={<Read/>}></Route>
             </Routes>

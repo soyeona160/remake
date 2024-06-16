@@ -1,5 +1,6 @@
 import { Flex, message, Upload, Typography } from 'antd';
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -8,6 +9,7 @@ import {
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 const { Title ,Text, Link } = Typography;
+
 
 
 const getBase64 = (img, callback) => {
@@ -36,7 +38,7 @@ const Write = () =>{
   const [password, setPassword] = useState("");
   const [roomLink, setRoomLink] = useState("");
   const [thumbNail, setThumbnail] = useState("")
-
+  const navigate = useNavigate()
 
 
     const [loading, setLoading] = useState(false);
@@ -90,6 +92,8 @@ const Write = () =>{
         axios.post('http://127.0.0.1:5001/posts/write', data, { withCredentials: true })
         .then(function (response) {
              console.log(response)
+             navigate('/')
+
           })
         .catch(function (error) {
             console.log(error);})
@@ -194,7 +198,7 @@ const Write = () =>{
           </Form.Item>
             <Flex gap="small" style={uploaderStyle}>
                 <Button type="primary" htmlType="submit" size='large' onClick={onSubmit}>등록하기</Button>
-                <Button type="text" size='large'>취소하기</Button>
+                <Button type="text" size='large' onClick={()=>navigate('/')}>취소하기</Button>
             </Flex>
         </Form>
         </div>

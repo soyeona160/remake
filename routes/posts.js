@@ -23,6 +23,7 @@ router.get('/', expressAsyncHandler(async(req, res, next) => {
     }
 }))
 
+// 글쓰기 기능
 router.post('/write', isAuth, expressAsyncHandler( async(req,res,next)=>{
   console.log(req.body)
 

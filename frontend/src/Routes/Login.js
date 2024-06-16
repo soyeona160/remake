@@ -122,7 +122,7 @@ const Login = () =>{
                 }}/>
                     </Form.Item>
                     <Button type="primary" size='large' htmlType="submit" style={{width: '90%'}} onClick={onSubmit}>로그인</Button>
-                    <Button style={{width: '90%'}}>회원가입</Button>
+                    <Button style={{width: '90%'}}  onClick={()=>{navigate('/users/signup')}}>회원가입</Button>
                 </Form>
                 
                 </Box>

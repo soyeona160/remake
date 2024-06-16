@@ -24,7 +24,6 @@ router.post('/register',limitUsage, oneOf([
         const user = new User({
             name: req.body.name,
             email: req.body.email,
-            userId: req.body.userId,
             password: req.body.password
         })
         const newUser = await user.save() // DB에 User 생성
