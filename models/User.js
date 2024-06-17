@@ -31,9 +31,9 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema)
 // const user = new User({
-//     email:'mamamama@naver.com',
-//     password:'mamamama',
-//     name:'mama'
+//     email:'dasdaddddd@naver.com',
+//     password:'mamamdasama3!',
+//     name:'yeona'
 // })
 
 // user.save().then(()=>console.log('done!'))

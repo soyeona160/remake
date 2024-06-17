@@ -30,14 +30,19 @@ const postSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    room : {
+        type: String
     }
 })
 
 const Post = mongoose.model('Post', postSchema)
 // const post = new Post({
-//     author: 'yeona',
-//     title:"영어 스터디 윗 미",
-//     description : "저는 6시간 동안 영어 공부를 합니다. 출퇴 자유. 마지막까지 함께해주시면 감동일 거예요."
+//     author: '666fa5b6458624638ce83671',
+//     title:"스터디 윗 미",
+//     description : "함께 공부해요",
+//     isPrivacy: true,
+//     password: '0000'
 // })
 // post.save().then(()=>console.log('작성완료'))
 module.exports = Post

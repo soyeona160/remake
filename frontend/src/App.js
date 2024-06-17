@@ -5,20 +5,12 @@ import Main from './Routes/Main'
 import Write from './Routes/Write'
 import Read from './Routes/Read'
 import Signup from './Routes/Signup'
+import HeaderComponent from './Components/HeaderComponent'
+import "./index.css"
+
 import { Avatar, Card, Divider, Flex, Layout } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
-
-const headerStyle = {
-    textAlign: 'center',
-    width: '100%',
-    height: 70,
-    paddingInline: 48,
-    lineHeight: '64px',
-    display: 'flex',
-    background:'white',
-    boxShadow: '0 0 5px -4px #999'
-  };
 
   const contentStyle = {
     textAlign: 'center',
@@ -37,13 +29,12 @@ const headerStyle = {
   };
 
 
-
 function App() {
   
   return (
     <Flex>
     <Layout style={layoutStyle}>
-        <Header style={headerStyle}> 캔메이트 </Header>
+        <HeaderComponent> 캔메이트 </HeaderComponent>
         <Content style={contentStyle}>
           <BrowserRouter>
             <Routes>
@@ -51,7 +42,7 @@ function App() {
               <Route path='/users/login' element={<Login/>}></Route>
               <Route path='/users/signup' element={<Signup/>}></Route>
               <Route path='/posts/write' element={<Write/>}></Route>
-              <Route path='/posts/read' element={<Read/>}></Route>
+              <Route path='/posts/read/:id' element={<Read/>}></Route>
             </Routes>
           </BrowserRouter>
         </Content>

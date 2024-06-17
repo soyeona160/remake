@@ -9,8 +9,8 @@ const {validateTodoTitle, validateTodoDescription, validateTodoCategory} = requi
 const { validationResult, oneOf } = require('express-validator')
 
 router.get('/', expressAsyncHandler(async(req, res, next) => {
-    // res.json("전체 할일목록 조회")
-    const posts = await Post.find()
+    // res.json("전체 포스트 조회")
+    const posts = await Post.find().populate('author')
     if(posts.length===0){
       return res.status(404).json({code: 404, message: "Failed to find posts!"})
     }else{
@@ -33,6 +33,7 @@ router.post('/write', isAuth, expressAsyncHandler( async(req,res,next)=>{
         description: req.body.description,
         password: req.body.password,
         createdAt: req.body.createdAt,
+        room: req.body.room
     })
 
     const newPost = await post.save()
@@ -45,28 +46,28 @@ router.post('/write', isAuth, expressAsyncHandler( async(req,res,next)=>{
     } // 201: created(생성됨)
 }))
 
-
-router.get('/:id', expressAsyncHandler((async(req,res,next)=>{
+// 글읽기 기능
+router.get('/read/:id', expressAsyncHandler((async(req,res,next)=>{
   const post = await Post.findOne({
       _id: req.params.id
-  })
+  }).populate('author')
 
   if(!post){
-      res.statue(404).json({code:404, message: '404 not found'})
+      res.status(404).json({code:404, message: '404 not found'})
   }else{
-    const { title, author, description, createdAt, isPrivacy} = post
-    res.json({code: 201, title, author, description, createdAt, isPrivacy })
+    const { title, author, description, createdAt, isPrivacy, room} = post
+    res.json({code: 201, title, author, description, createdAt, isPrivacy, room})
   }
 })))
 
-router.put('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
+router.put('/read/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
     const post = await Post.findOne({
         author: req.user._id,
         _id: req.params.id
     })
 
     if(!post){
-        res.statue(404).json({code:404, message: '404 not found'})
+        res.status(404).json({code:404, message: '404 not found'})
     }else{
         post.title = req.body.title || post.title
         post.description =req.body.description || post.description
@@ -75,7 +76,7 @@ router.put('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
     }
 }))
 
-router.delete('/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
+router.delete('/read/:id', isAuth, expressAsyncHandler(async(req,res,next)=>{
   const post = await Post.findByIdAndDelete({
       _id: req.params.id
   })
