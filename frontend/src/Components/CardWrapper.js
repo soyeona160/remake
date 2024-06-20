@@ -18,11 +18,9 @@ const spaceStyle = {
     alignItems: 'center'
 }
 
-// const posts = [ {title: 'study with me', author:'집가맨'},{title: 'study with me', author:' '},{title: 'study with me', author:' '},{title: 'study with me', author:' '}, {title: 'study with me', author:' '},{title: 'study with me', author:' '},{title: 'study with me', author:' '},{title: 'study with me', author:' '} ]
-// const posts = await axios.get('/posts')
+
 const CardWrapper = ({posts}) =>{
     const navigate = useNavigate()
-    console.log(posts)
     return(
         <div style={spaceStyle}>
             { posts.map((item)=>{

@@ -50,13 +50,13 @@ router.post('/register',limitUsage, oneOf([
           //쿼리
       const errors = validationResult(req)
       if(!errors.isEmpty()){
-        console.log(errors.array())
+        // console.log(errors.array())
         res.status(400).json({
           code: 400, message: '사용자를 찾을 수 없습니다.',
           error: errors.array()
         })
       }else{
-        console.log('로그인중...')
+        // console.log('로그인중...')
         const loginUser= await User.findOne({
           email : req.body.email,
           password: req.body.password
@@ -67,7 +67,7 @@ router.post('/register',limitUsage, oneOf([
             
           const { name, email, userId, isAdmin, createdAt } = loginUser
           const token = generateToken(loginUser)
-          console.log(token)
+          // console.log(token)
           res.cookie('token', JSON.stringify(token), {
             httpOnly: true, secure: true, expires: new Date(Date.now() + 24 * 3600000)
           })

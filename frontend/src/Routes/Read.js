@@ -14,7 +14,6 @@ const Read = () => {
 
     const getPost = async()=>{
         const posted = await (await axios.get(`http://127.0.0.1:5001/posts/read/${id}`)).data
-        // console.log(posted)
         setPost(posted)
         setLoading(false)
     }
@@ -24,7 +23,6 @@ const Read = () => {
     let month = ('0'+(postDate.getMonth()+1)).slice(-2)
     let day = ('0'+postDate.getDate()).slice(-2)
     let hour = postDate.getHours()
-    console.log(year, month, day, hour)
 
     useEffect(()=>{
         getPost();

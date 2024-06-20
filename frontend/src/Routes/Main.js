@@ -7,11 +7,12 @@ import CardWrapper from "../Components/CardWrapper";
 import { Space} from "antd";
 import { Avatar, Card, Divider, Flex, Layout } from "antd";
 import axios from 'axios';
-import { url } from 'inspector';
+// import { url } from 'inspector';
 const { Header, Footer, Sider, Content } = Layout;
 const { Title ,Text, Link } = Typography;
 
 const contentStyles = {
+    width: '100%',
   margin: 0,
   height: '350px',
   color: '#fff',
